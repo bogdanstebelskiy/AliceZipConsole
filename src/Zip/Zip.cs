@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 
-namespace ConsoleApp
+namespace ConsoleApp.src.Zip
 {
     internal class Zip : IArchiver
     {
@@ -66,11 +66,11 @@ namespace ConsoleApp
                 Directory.CreateDirectory(outPath);
             }
 
-            using ZipInputStream zipInputStream = new (File.OpenRead(inPath));
+            using ZipInputStream zipInputStream = new(File.OpenRead(inPath));
 
             ZipEntry zipEntry;
 
-            while((zipEntry = zipInputStream.GetNextEntry()) != null)
+            while ((zipEntry = zipInputStream.GetNextEntry()) != null)
             {
                 string? dirName = Path.GetDirectoryName(zipEntry.Name);
                 string? fileName = Path.GetFileName(zipEntry.Name);

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp
+namespace ConsoleApp.src.Rar
 {
     internal class Rar : IArchiver
     {
@@ -19,7 +19,7 @@ namespace ConsoleApp
 
             using FileStream fileStream = File.OpenRead(inPath);
 
-            using RarArchive archive = new (fileStream);
+            using RarArchive archive = new(fileStream);
             archive.ExtractToDirectory(outPath);
         }
     }

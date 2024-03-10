@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.GZip;
 
 
-namespace ConsoleApp
+namespace ConsoleApp.src.GZip
 {
     internal class GZip : IArchiver
     {
@@ -23,9 +23,9 @@ namespace ConsoleApp
             Stream outFileStream = File.Create(outPath);
 
             ICSharpCode.SharpZipLib.GZip.GZip.Compress(
-                inStream: inFileStream, 
-                outStream: outFileStream, 
-                isStreamOwner: IsStreamOwner, 
+                inStream: inFileStream,
+                outStream: outFileStream,
+                isStreamOwner: IsStreamOwner,
                 bufferSize: BufferSize,
                 level: CompressionLevel
             );
@@ -39,9 +39,9 @@ namespace ConsoleApp
             Stream outFileStream = File.Create(outPath);
 
             ICSharpCode.SharpZipLib.GZip.GZip.Decompress(
-                inStream: inFileStream, 
-                outStream: outFileStream, 
-                isStreamOwner: IsStreamOwner  
+                inStream: inFileStream,
+                outStream: outFileStream,
+                isStreamOwner: IsStreamOwner
             );
         }
     }

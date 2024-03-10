@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.BZip2;
 
-namespace ConsoleApp
+namespace ConsoleApp.src.BZip2
 {
     internal class BZip2 : IArchiver
     {

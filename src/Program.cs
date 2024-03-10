@@ -8,7 +8,7 @@ using ICSharpCode.SharpZipLib.BZip2;
 using ICSharpCode.SharpZipLib.Tar;
 using System.Runtime.CompilerServices;
 
-namespace ConsoleApp
+namespace ConsoleApp.src
 {
     internal class Program
     {
@@ -29,7 +29,7 @@ namespace ConsoleApp
             //algorithm.Compress("test", "output.zip");
 
             //algorithm.Decompress("./tmp/output.zip", "./another/");
-            
+
 
         }
     }

@@ -10,12 +10,12 @@ using ICSharpCode.SharpZipLib.Tar;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Diagnostics.Contracts;
 
-namespace ConsoleApp
+namespace ConsoleApp.src.Tar
 {
     internal class Tar : IArchiver
     {
         public string SearchPattern { get; set; } = "*";
-        public SearchOption SearchOption{ get; set; } = SearchOption.AllDirectories;
+        public SearchOption SearchOption { get; set; } = SearchOption.AllDirectories;
         public Encoding Encoding { get; set; } = Encoding.UTF8;
 
 
