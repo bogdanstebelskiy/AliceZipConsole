@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 
-namespace ConsoleApp.src.Zip
+namespace ConsoleApp.src.Archiver.Zip
 {
     internal class Zip : IArchiver
     {

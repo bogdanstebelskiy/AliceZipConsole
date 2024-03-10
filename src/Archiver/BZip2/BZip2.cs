@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ICSharpCode.SharpZipLib.GZip;
+using ICSharpCode.SharpZipLib.BZip2;
 
-
-namespace ConsoleApp.src.GZip
+namespace ConsoleApp.src.Archiver.BZip2
 {
-    internal class GZip : IArchiver
+    internal class BZip2 : IArchiver
     {
-        public int BufferSize { get; set; } = 512;
         public int CompressionLevel { get; set; } = 5;
         public bool IsStreamOwner { get; set; } = true;
+
         public void Archive(string inPath, string outPath)
         {
             Validator.ValidatePath(inPath);
@@ -22,11 +22,10 @@ namespace ConsoleApp.src.GZip
             Stream inFileStream = File.OpenRead(inPath);
             Stream outFileStream = File.Create(outPath);
 
-            ICSharpCode.SharpZipLib.GZip.GZip.Compress(
+            ICSharpCode.SharpZipLib.BZip2.BZip2.Compress(
                 inStream: inFileStream,
                 outStream: outFileStream,
                 isStreamOwner: IsStreamOwner,
-                bufferSize: BufferSize,
                 level: CompressionLevel
             );
         }
@@ -38,7 +37,7 @@ namespace ConsoleApp.src.GZip
             Stream inFileStream = File.OpenRead(inPath);
             Stream outFileStream = File.Create(outPath);
 
-            ICSharpCode.SharpZipLib.GZip.GZip.Decompress(
+            ICSharpCode.SharpZipLib.BZip2.BZip2.Decompress(
                 inStream: inFileStream,
                 outStream: outFileStream,
                 isStreamOwner: IsStreamOwner

@@ -10,7 +10,7 @@ using ICSharpCode.SharpZipLib.Tar;
 using ICSharpCode.SharpZipLib.Zip;
 using System.Diagnostics.Contracts;
 
-namespace ConsoleApp.src.Tar
+namespace ConsoleApp.src.Archiver.Tar
 {
     internal class Tar : IArchiver
     {

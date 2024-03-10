@@ -1,32 +1,32 @@
-﻿using Aspose.Zip.Lzip;
-using ICSharpCode.SharpZipLib.Zip;
+﻿using Aspose.Zip.LZMA;
+using Aspose.Zip.Saving;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp.src.Lz
+namespace ConsoleApp.src.Archiver.Lzma
 {
-    internal class Lz : IArchiver
+    internal class Lzma : IArchiver
     {
         public void Archive(string inFile, string outFile)
         {
             Validator.ValidatePath(inFile);
             Validator.ValidatePath(outFile);
 
-            using LzipArchive archive = new();
+            using LzmaArchive archive = new();
 
             archive.SetSource(inFile);
             archive.Save(outFile);
         }
-
         public void Unarchive(string inFile, string outFile)
         {
             Validator.ValidatePath(inFile);
             Validator.ValidatePath(outFile);
 
-            using LzipArchive archive = new(inFile);
+            using LzmaArchive archive = new(inFile);
 
             using FileStream extracted = File.Create(outFile);
             archive.Extract(extracted);

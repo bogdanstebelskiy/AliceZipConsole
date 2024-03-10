@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp.src
+namespace ConsoleApp.src.Archiver
 {
     internal interface IArchiver
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp.src.Rar
+namespace ConsoleApp.src.Archiver.Rar
 {
     internal class Rar : IArchiver
     {

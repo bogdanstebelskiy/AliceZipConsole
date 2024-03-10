@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp.src.SevenZip
+namespace ConsoleApp.src.Archiver.SevenZip
 {
     internal class SevenZip : IArchiver
     {
