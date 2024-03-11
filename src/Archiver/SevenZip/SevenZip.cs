@@ -28,7 +28,7 @@ namespace ConsoleApp.src.Archiver.SevenZip
             Validator.ValidatePath(inPath);
             Validator.ValidatePath(outPath);
 
-            using FileStream fileStream = File.OpenRead(inPath);
+            using var fileStream = File.OpenRead(inPath);
 
             using SevenZipArchive archive = new(fileStream);
             archive.ExtractToDirectory(outPath);

@@ -9,6 +9,6 @@ namespace ConsoleApp.src.Checksum
 {
     internal interface IChecksum
     {
-        string CalculateChecksum(string inPath, int bufferSize = 1024 * 50);
+        string? CalculateChecksum(string inPath);
     }
 }

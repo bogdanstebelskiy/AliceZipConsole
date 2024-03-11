@@ -12,7 +12,6 @@ namespace ConsoleApp.src.Archiver.Zip
 {
     internal class Zip : IArchiver
     {
-        public int BufferSize { get; set; } = 4096;
         public string SearchPattern { get; set; } = "*";
         public SearchOption SearchOption { get; set; } = SearchOption.AllDirectories;
         public Encoding Encoding { get; set; } = Encoding.UTF8;
@@ -20,43 +19,31 @@ namespace ConsoleApp.src.Archiver.Zip
 
         public void Archive(string inPath, string outPath)
         {
-
-        }
-
-        public void ArchiveStream(string inPath, string outPath)
-        {
             Validator.ValidatePath(inPath);
             Validator.ValidatePath(outPath);
 
-            string[] fileNames = Directory.GetFiles(inPath, SearchPattern, SearchOption);  // !!!
+            var fileNames = Directory.GetFiles(inPath, SearchPattern, SearchOption);
 
             using ZipOutputStream zipOutputStream = new(File.Create(outPath));
 
             zipOutputStream.SetLevel(CompressionLevel);
 
-            ZipEntry zipEntry;
-
-            foreach (string file in fileNames)
+            foreach (var file in fileNames)
             {
-                string relativePath = Path.GetRelativePath(inPath, file);
+                var relativePath = Path.GetRelativePath(inPath, file);
 
-                zipEntry = new(relativePath)
+                ZipEntry zipEntry = new(relativePath)
                 {
                     DateTime = DateTime.Now
                 };
                 zipOutputStream.PutNextEntry(zipEntry);
 
-                using FileStream fileStream = File.OpenRead(file);
+                using var fileStream = File.OpenRead(file);
                 fileStream.CopyTo(zipOutputStream);
             }
         }
 
         public void Unarchive(string inPath, string outPath)
-        {
-
-        }
-
-        public void UnarchiveStream(string inPath, string outPath)
         {
             Validator.ValidatePath(inPath);
             Validator.ValidatePath(outPath);
@@ -68,23 +55,20 @@ namespace ConsoleApp.src.Archiver.Zip
 
             using ZipInputStream zipInputStream = new(File.OpenRead(inPath));
 
-            ZipEntry zipEntry;
-
-            while ((zipEntry = zipInputStream.GetNextEntry()) != null)
+            while (zipInputStream.GetNextEntry() is { } zipEntry)
             {
-                string? dirName = Path.GetDirectoryName(zipEntry.Name);
-                string? fileName = Path.GetFileName(zipEntry.Name);
+                var dirName = Path.GetDirectoryName(zipEntry.Name);
+                var fileName = Path.GetFileName(zipEntry.Name);
 
                 if (!string.IsNullOrEmpty(dirName))
                 {
                     Directory.CreateDirectory(outPath + dirName);
                 }
 
-                if (!string.IsNullOrEmpty(fileName))
-                {
-                    using FileStream fileStream = File.Create(outPath + zipEntry.Name);
-                    zipInputStream.CopyTo(fileStream);
-                }
+                if (string.IsNullOrEmpty(fileName)) continue;
+
+                using var fileStream = File.Create(outPath + zipEntry.Name);
+                zipInputStream.CopyTo(fileStream);
             }
         }
     }

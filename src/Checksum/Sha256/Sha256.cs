@@ -9,17 +9,18 @@ namespace ConsoleApp.src.Checksum.Sha256
 {
     internal class Sha256 : IChecksum
     {
-        public string CalculateChecksum(string inPath, int bufferSize = 1024 * 50)
+        public int BufferSize { get; set; } = 1024 * 50;
+        public string? CalculateChecksum(string inPath)
         {
             using var sha256 = System.Security.Cryptography.SHA256.Create();
             
             var attributes = File.GetAttributes(inPath);
-            var buffer = new byte[bufferSize];
+            var buffer = new byte[BufferSize];
 
             using var fileStream = File.OpenRead(inPath);
 
             var bytesRead = 0;
-            while ((bytesRead = fileStream.Read(buffer, 0, bufferSize)) != 0)
+            while ((bytesRead = fileStream.Read(buffer, 0, BufferSize)) != 0)
             {
                 sha256.TransformBlock(buffer, 0, bytesRead, buffer, 0);
             }
@@ -31,7 +32,7 @@ namespace ConsoleApp.src.Checksum.Sha256
                 return BitConverter.ToString(sha256.Hash).Replace("-", "").ToLower();
             }
 
-            return "";
+            return null;
         }
     }
 }

@@ -52,10 +52,10 @@ namespace ConsoleApp.src.Archiver.Tar
                 Directory.CreateDirectory(outPath);
             }
 
-            using FileStream fileStream = File.OpenRead(inPath);
-            using TarInputStream tarInputStream = new(fileStream, Encoding);
+            using var fileStream = File.OpenRead(inPath);
+            using var tarInputStream = new TarInputStream(fileStream, Encoding);
 
-            using TarArchive tarArchive = TarArchive.CreateInputTarArchive(tarInputStream, Encoding);
+            using var tarArchive = TarArchive.CreateInputTarArchive(tarInputStream, Encoding);
             tarArchive.ExtractContents(outPath);
         }
     }

@@ -24,10 +24,12 @@ namespace ConsoleApp.src
             IArchiver seven = ArchiverFactory.CreateArchiver("7zip");
             seven.Archive("test", "anotherone.7z");*/
 
-            IChecksum sha256 = ChecksumFactory.CreateChecksum("sha256");
-            Console.WriteLine(sha256.CalculateChecksum("test"));
-            //IArchiver zip = ArchiverFactory.CreateArchiver("zip");
-            //zip.Unarchive("output.zip", "./new/");
+            //IChecksum sha256 = ChecksumFactory.CreateChecksum("sha256");
+            //Console.WriteLine(sha256.CalculateChecksum("test"));
+            var bzip2crc = ChecksumFactory.CreateChecksum("bzip2crc");
+            Console.WriteLine(bzip2crc.CalculateChecksum("test.lzma"));
+            //var zip = ArchiverFactory.CreateArchiver("zip");
+            //zip.Archive("tmp", "some.zip");
             //gzip.Compress("output.tar", "output.tar.gz", 9);
             //algorithm.Decompress("./output.tar", "./new/");
 

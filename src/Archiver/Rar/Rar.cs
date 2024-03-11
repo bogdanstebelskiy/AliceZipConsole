@@ -17,7 +17,7 @@ namespace ConsoleApp.src.Archiver.Rar
             Validator.ValidatePath(inPath);
             Validator.ValidatePath(outPath);
 
-            using FileStream fileStream = File.OpenRead(inPath);
+            using var fileStream = File.OpenRead(inPath);
 
             using RarArchive archive = new(fileStream);
             archive.ExtractToDirectory(outPath);

@@ -28,7 +28,7 @@ namespace ConsoleApp.src.Archiver.Lzma
 
             using LzmaArchive archive = new(inFile);
 
-            using FileStream extracted = File.Create(outFile);
+            using var extracted = File.Create(outFile);
             archive.Extract(extracted);
         }
     }

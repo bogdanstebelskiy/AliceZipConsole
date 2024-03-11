@@ -28,7 +28,7 @@ namespace ConsoleApp.src.Archiver.Lz
 
             using LzipArchive archive = new(inFile);
 
-            using FileStream extracted = File.Create(outFile);
+            using var extracted = File.Create(outFile);
             archive.Extract(extracted);
         }
     }
